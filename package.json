@@ -1,0 +1,26 @@
+{
+  "name": "logger",
+  "version": "1.0.0",
+  "description": "logger",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup"
+  },
+  "keywords": [
+    "logger",
+    "remote-log"
+  ],
+  "homepage": "https://github.com/jaoonline/logger#readme",
+  "bugs": {
+    "url": "https://github.com/jaoonline/logger/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaoonline/logger.git"
+  },
+  "license": "MIT",
+  "author": "James adeniyi",
+  "type": "commonjs"
+}
