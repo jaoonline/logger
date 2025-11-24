@@ -1,5 +1,6 @@
 
 export interface FuncInterface {
-  log(): Promise<any>;
-  getLog(): Promise<any>;
+  log(s: any): Promise<any>;
+  info(s: any): Promise<any>;
+  getLog(l: string): Promise<any>;
 }

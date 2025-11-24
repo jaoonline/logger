@@ -8,22 +8,52 @@ export class Loggers implements FuncInterface {
   constructor(config: PackageConfig) {
     this.validateConfig(config);
     this.config = { 
-      apiUrl: 'https://api.default.com',
+      apiUrl: 'https://api.support.tulupay.com',
       ...config 
     };
     this.isInitialized = true;
   }
-   public async log(): Promise<any> {
+   public async log(contextData: any): Promise<any> {
     // Use the configuration
-    // const response = await fetch(this.config.apiUrl!, {
-    //   headers: {
-    //     'Authorization': `Bearer ${this.config.privateKey}`
-    //   },
-    // });
+    const postData = {
+      type: 'log', // variable for logger type
+      context: contextData     // variable for context
+    };
+
+    const response = await fetch(`${this.config.apiUrl!}/logger`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `${this.config.privateKey}`,
+        'projectName': `${this.config.projectName}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    });
     console.log(`Logging for project: ${this.config.projectName}`);
     // return response.json();
     return { message: `Log for project: ${this.config.projectName}` };
     }
+
+    public async info(contextData: any): Promise<any> {
+    // Use the configuration
+    const postData = {
+      type: 'info', // variable for logger type
+      context: contextData     // variable for context
+    };
+
+    const response = await fetch(`${this.config.apiUrl!}/logger`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `${this.config.privateKey}`,
+        'projectName': `${this.config.projectName}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    });
+    // return response.json();
+    return { message: `Log for project: ${this.config.projectName}` };
+    }
+
 
   private validateConfig(config: PackageConfig): void {
     if (!config.projectName || !config.privateKey) {
@@ -43,11 +73,21 @@ export class Loggers implements FuncInterface {
     // Implementation here
   }
 
-  public async getLog(): Promise<any> {
+  public async getLog(type: string): Promise<any> {
     // Use the configuration
-    const response = await fetch(this.config.apiUrl!, {
+    let url: string;
+    if (type) {
+      url = `${this.config.apiUrl!}/logger/${type}`;
+    }else{
+      url = `${this.config.apiUrl!}/logger`;
+    }
+    console.log(url);
+    
+   const response = await fetch(url, {
       headers: {
-        'Authorization': `Bearer ${this.config.privateKey}`
+        'Authorization': `${this.config.privateKey}`,
+        'projectName': `${this.config.projectName}`,
+        'Content-Type': 'application/json'
       },
     });
     

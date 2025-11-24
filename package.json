@@ -1,5 +1,5 @@
 {
-  "name": "logger",
+  "name": "@cephatech/logger",
   "version": "1.0.0",
   "description": "logger",
   "main": "./dist/index.js",
