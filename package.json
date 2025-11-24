@@ -1,5 +1,5 @@
 {
-  "name": "@cephatech/logger",
+  "name": "@jaoonline/logger",
   "version": "1.0.0",
   "description": "logger",
   "main": "./dist/index.js",
